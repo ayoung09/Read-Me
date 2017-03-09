@@ -4,7 +4,7 @@ import {Router, Route, IndexRedirect} from 'react-router';
 import {render} from 'react-dom';
 import {connect, Provider} from 'react-redux';
 
-//import Transcription from './components/Transcription';
+//import Transcription from './components/Transcription'; //come back to this later
 
 render (
   <Router history={browserHistory}>
