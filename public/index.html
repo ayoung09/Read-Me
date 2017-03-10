@@ -25,44 +25,8 @@
     </style>
   </head>
   <body>
-    <div id="react"></div>
-    <h4 align="center">Read Me</h4>
-    <div id="result"></div>
-    <button onclick="startConverting();"><i class="fa fa-microphone"></i></button>
-    <script type="text/javascript">
+  <div id=main></div>
+  <script async defer src=/bundle.js></script>
 
-      var r = document.getElementById('result');
-
-      function startConverting () {
-        if (!'webkitSpeechRecognition' in window){
-          upgrade()
-        } else {
-          var speechRecognizer = new webkitSpeechRecognition();
-          speechRecognizer.continuous = true;
-          speechRecognizer.interimResults = true;
-          speechRecognizer.lang = 'en-IN';
-          speechRecognizer.start();
-
-          var finalTranscripts = '';
-
-          speechRecognizer.onresult = function(event){
-            var interimTranscripts = '';
-            for(var i = event.resultIndex; i < event.results.length; i++){
-              var transcript = event.results[i][0].transcript;
-              transcript.replace("\n", "<br>");
-              if(event.results[i].isFinal){
-                finalTranscripts += transcript;
-              }else{
-                interimTranscripts += transcript;
-              }
-            }
-            r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
-          };
-          speechRecognizer.onerror = function (event) {
-          };
-        }
-      }
-
-    </script>
   </body>
 </html>

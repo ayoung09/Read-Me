@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {resolve} = require('path');
 
+const db = require('../models');
+
 const app = express();
 
 module.exports = app
@@ -14,7 +16,7 @@ module.exports = app
 
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
 
-  //.use('/api', require('./api'))
+  .use('/api', require('./api'))
 
   .use((err, req, res, next) => {
     console.log(err);
@@ -24,4 +26,11 @@ module.exports = app
 
 app.listen(1337, () => {
     console.log('--- The Server is listening intently on Port 1337 ---');
+    db.sync()
+    .then(() => {
+      console.log('Database is synced up and ready to go!');
+    })
+    .catch(error => {
+      console.error('Trouble syncing the database!', error, error.stack);
+    });
   });
