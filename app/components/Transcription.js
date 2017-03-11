@@ -1,49 +1,80 @@
-import React from 'react';
-import axios from 'axios';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+import { submitTranscript, resetTranscript } from '../reducers/transcription';
+
+const mapStateToProps = (state) => ({
+  transcript: state.transcription.transcript,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  submitTranscript: (text) => dispatch(submitTranscript(text)),
+});
 
 
-const startConverting = () => {
+const startStopConverting = (onOrOff) => {
 
   var r = document.getElementById('result');
+  console.log('this is on or off: ', onOrOff);
 
-  if (!'webkitSpeechRecognition' in window){
-    upgrade();
-  } else {
-    var speechRecognizer = new webkitSpeechRecognition();
-    speechRecognizer.continuous = true;
-    speechRecognizer.interimResults = true;
-    speechRecognizer.lang = 'en-IN';
-    speechRecognizer.start();
 
-    var finalTranscripts = '';
+    if (!'webkitSpeechRecognition' in window){
+      upgrade();
+    } else {
+      var speechRecognizer = new webkitSpeechRecognition();
+      speechRecognizer.continuous = true;
+      speechRecognizer.interimResults = true;
+      speechRecognizer.lang = 'en-IN';
+    }
 
-    speechRecognizer.onresult = function(event){
-      var interimTranscripts = '';
-      for(var i = event.resultIndex; i < event.results.length; i++){
-        var transcript = event.results[i][0].transcript;
-        transcript.replace("\n", "<br>");
-        if(event.results[i].isFinal){
-          finalTranscripts += transcript;
-        }else{
-          interimTranscripts += transcript;
+  if (onOrOff) {
+      speechRecognizer.start();
+
+      var finalTranscripts = '';
+
+      speechRecognizer.onresult = function(event){
+        var interimTranscripts = '';
+        for(var i = event.resultIndex; i < event.results.length; i++){
+          var transcript = event.results[i][0].transcript;
+          transcript.replace("\n", "<br>");
+          if(event.results[i].isFinal){
+            finalTranscripts += transcript;
+          }else{
+            interimTranscripts += transcript;
+          }
         }
-      }
-      r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
-    };
-    speechRecognizer.onerror = function (event) {
-    };
+        r.innerHTML = finalTranscripts + interimTranscripts;
+      };
+      speechRecognizer.onerror = function (event) {
+      };
+  } else if (!onOrOff) {
+    speechRecognizer.stop();
+    return;
   }
 };
 
-const Transcription = () => {
-  console.log('Got to transcription component');
+const Transcription = ({transcription, submitTranscript}) => {
+
+  let transcriberOn = false;
   return (
     <div>
-      <h4 align="center">Read Me</h4>
+      <h4>Read Me</h4>
         <div id="result"></div>
-        <button onClick={() => startConverting()}><i className="fa fa-microphone"></i></button>
+          <button onClick={() => {
+            transcriberOn = !transcriberOn;
+            startStopConverting(transcriberOn);
+          }}>
+            <i className="fa fa-microphone"></i>
+          </button>
+        <div>
+          <button onClick={() => {
+            let finalTranscript = document.getElementById('result').innerHTML;
+            submitTranscript(finalTranscript);
+          }}>Submit</button>
+        </div>
     </div>
   );
 };
 
-export default Transcription;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Transcription);
