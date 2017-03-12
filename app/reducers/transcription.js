@@ -14,8 +14,6 @@ const RESET_TRANSCRIPT = 'RESET_TRANSCRIPT';
 const transcriptionReducer = (prevState = initialState, action) => {
   let nextState = Object.assign({}, prevState);
 
-  console.log('am I getting to reducer?');
-
   switch(action.type) {
     case SUBMIT_TRANSCRIPT:
       console.log('am I getting to submit transcript in reducer?')

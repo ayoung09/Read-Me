@@ -5,18 +5,33 @@ import {render} from 'react-dom';
 import {connect, Provider} from 'react-redux';
 import axios from 'axios';
 
-import store from './store'
-import Transcription from './components/Transcription'; //come back to this later
+import store from './store';
+
+import App from './components/App';
+import Welcome from './components/Welcome';
+import ReadText from './components/ReadText';
+
+import { receiveAllTexts, getTextById } from './reducers/originText';
+
 
 const onAppEnter = () => {
-  console.log('got to app!!!')
-}
+  axios.get('/api/texts')
+    .then(response => store.dispatch(receiveAllTexts(response.data)));
+};
+
+const onReadTextEnter = (nextRouterState) => {
+  const textId = nextRouterState.params.textId;
+  store.dispatch(getTextById(textId));
+};
 
 render (
   <Provider store={store}>
     <Router history={browserHistory} >
-      <Route path="/" onEnter={onAppEnter} component={Transcription} />
-      <IndexRedirect to="/" />
+      <Route path="/" component={App} onEnter={onAppEnter}>
+        <Route path="/welcome" component={Welcome} />
+        <Route path="/readText/:textId" onEnter={onReadTextEnter} component={ReadText} />
+        <IndexRedirect to="/welcome" />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('main')

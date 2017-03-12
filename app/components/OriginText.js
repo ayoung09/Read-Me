@@ -1,15 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
-const mapStateToProps = (state) => ({
-  currentText: state.originText.currentText,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentText: (text) => dispatch(setCurrentText(text)),
-});
+const OriginText = (props) => {
+  const currentText = props.currentText;
 
-const OriginText = ({ currentText, setCurrentText }) => {
   return (
     <div>
       <h4>{currentText.title}</h4>
@@ -18,3 +13,4 @@ const OriginText = ({ currentText, setCurrentText }) => {
   )
 }
 
+export default OriginText;

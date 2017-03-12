@@ -14,9 +14,10 @@ module.exports = app
 
   .use(express.static(resolve(__dirname, '..', 'public')))
 
+  .use('/api', require('./api'))
+
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
 
-  .use('/api', require('./api'))
 
   .use((err, req, res, next) => {
     console.log(err);
