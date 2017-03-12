@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import FlashcardTranscription from './FlashcardTranscription';
 import {setCurrentFlashcard} from '../reducers/flashcards';
 
 const mapStateToProps = state => ({
@@ -36,6 +37,7 @@ const Flashcard = ({ flashcards, currentFlashcard, setCurrentFlashcard }) => {
           <button onClick={() => {
             speak(currentFlashcard);
           }}>Listen</button>
+        <FlashcardTranscription />
         </div>
       }
     </div>

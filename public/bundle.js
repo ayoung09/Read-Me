@@ -14682,6 +14682,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(24);
 
+var _FlashcardTranscription = __webpack_require__(334);
+
+var _FlashcardTranscription2 = _interopRequireDefault(_FlashcardTranscription);
+
 var _flashcards = __webpack_require__(50);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -14744,7 +14748,8 @@ var Flashcard = function Flashcard(_ref) {
             speak(currentFlashcard);
           } },
         'Listen'
-      )
+      ),
+      _react2.default.createElement(_FlashcardTranscription2.default, null)
     )
   );
 };
@@ -33470,6 +33475,84 @@ var onReadTextEnter = function onReadTextEnter(nextRouterState) {
     )
   )
 ), document.getElementById('main'));
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var startStopConverting = function startStopConverting(onOrOff) {
+
+  var r = document.getElementById('result');
+  console.log('this is on or off: ', onOrOff);
+
+  if (!'webkitSpeechRecognition' in window) {
+    upgrade();
+  } else {
+    var speechRecognizer = new webkitSpeechRecognition();
+    speechRecognizer.continuous = true;
+    speechRecognizer.interimResults = true;
+    speechRecognizer.lang = 'en-IN';
+  }
+
+  if (!onOrOff) {
+    console.log('got to off', onOrOff);
+    speechRecognizer.stop();
+    return;
+  } else if (onOrOff) {
+    speechRecognizer.start();
+
+    var finalTranscripts = '';
+
+    speechRecognizer.onresult = function (event) {
+      var interimTranscripts = '';
+      for (var i = event.resultIndex; i < event.results.length; i++) {
+        var transcript = event.results[i][0].transcript;
+        transcript.replace("\n", "<br>");
+        if (event.results[i].isFinal) {
+          finalTranscripts += transcript;
+        } else {
+          interimTranscripts += transcript;
+        }
+      }
+      r.innerHTML = finalTranscripts + interimTranscripts;
+    };
+    speechRecognizer.onerror = function (event) {};
+  }
+};
+
+var FlashcardTranscription = function FlashcardTranscription(props) {
+
+  var transcriberOn = false;
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'button',
+      { onClick: function onClick() {
+          transcriberOn = !transcriberOn;
+          startStopConverting(transcriberOn);
+        } },
+      _react2.default.createElement('i', { className: 'fa fa-microphone' })
+    ),
+    _react2.default.createElement('div', { id: 'result' })
+  );
+};
+
+exports.default = FlashcardTranscription;
 
 /***/ })
 /******/ ]);
