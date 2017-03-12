@@ -10,8 +10,8 @@ const Welcome = ({allTexts}) => {
 
   return (
     <div>
-      <h2>Welcome to Read Me</h2>
-      <h4>Select a text below to begin your reading practice</h4>
+      <h1>Welcome to Read Me</h1>
+      <h3>Select a text below to begin your reading practice</h3>
       {allTexts.length && allTexts.map(text => {
         return (
           <Link key={text.id} to={`readText/${text.id}`}><button>{text.title}</button></Link>
