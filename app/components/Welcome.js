@@ -14,8 +14,8 @@ const Welcome = ({allTexts}) => {
       <h4>Select a text below to begin your reading practice</h4>
       {allTexts.length && allTexts.map(text => {
         return (
-          <Link to={`readText/${text.id}`}><button>{text.title}</button></Link>
-        )
+          <Link key={text.id} to={`readText/${text.id}`}><button>{text.title}</button></Link>
+        );
       })}
     </div>
   );

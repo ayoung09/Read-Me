@@ -1,13 +1,14 @@
 //initial state of component
 let initialState = {
   transcript: '',
+  comparison: '',
 };
 
 
 //constants
 const TOGGLE_TRANSCRIBER = 'TOGGLE_TRANSCRIBER';
 const SUBMIT_TRANSCRIPT = 'SUBMIT_TRANSCRIPT';
-const RESET_TRANSCRIPT = 'RESET_TRANSCRIPT';
+const WRITE_COMPARISON = 'WRITE_COMPARISON';
 
 
 //reducer
@@ -16,18 +17,18 @@ const transcriptionReducer = (prevState = initialState, action) => {
 
   switch(action.type) {
     case SUBMIT_TRANSCRIPT:
-      console.log('am I getting to submit transcript in reducer?')
+
       nextState.transcript = action.transcript;
       break;
 
-    case RESET_TRANSCRIPT:
-      nextState.transcript = '';
+    case WRITE_COMPARISON:
+      nextState.comparison = action.comparison;
       break;
 
     default:
       return prevState;
   }
-  console.log('Action dispatched: ', action.type, ' transcript: ', nextState.transcript);
+
   return nextState;
 };
 
@@ -38,8 +39,9 @@ export const submitTranscript = (text) => ({
   transcript: text,
 });
 
-export const resetTranscript = () => ({
-  type: RESET_TRANSCRIPT
+export const writeComparison = (comparisonText) => ({
+  type: WRITE_COMPARISON,
+  comparison: comparisonText,
 });
 
 
