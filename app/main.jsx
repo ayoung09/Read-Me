@@ -10,6 +10,7 @@ import store from './store';
 import App from './components/App';
 import Welcome from './components/Welcome';
 import ReadText from './components/ReadText';
+import Compare from './components/Compare';
 
 import { receiveAllTexts, getTextById } from './reducers/originText';
 
@@ -30,6 +31,7 @@ render (
       <Route path="/" component={App} onEnter={onAppEnter}>
         <Route path="/welcome" component={Welcome} />
         <Route path="/readText/:textId" onEnter={onReadTextEnter} component={ReadText} />
+        <Route path="/compare" component={Compare} />
         <IndexRedirect to="/welcome" />
       </Route>
     </Router>

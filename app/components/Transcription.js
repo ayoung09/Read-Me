@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 
 import { submitTranscript, resetTranscript } from '../reducers/transcription';
 
@@ -8,7 +9,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  submitTranscript: (text) => dispatch(submitTranscript(text)),
+  submitTranscript: (text) => {
+    dispatch(submitTranscript(text));
+    browserHistory.push('/compare');
+  },
 });
 
 
@@ -27,7 +31,12 @@ const startStopConverting = (onOrOff) => {
       speechRecognizer.lang = 'en-IN';
     }
 
-  if (onOrOff) {
+    if (!onOrOff) {
+      console.log('got to off', onOrOff);
+      speechRecognizer.stop();
+      return;
+
+    } else if (onOrOff) {
       speechRecognizer.start();
 
       var finalTranscripts = '';
@@ -47,15 +56,13 @@ const startStopConverting = (onOrOff) => {
       };
       speechRecognizer.onerror = function (event) {
       };
-  } else if (!onOrOff) {
-    speechRecognizer.stop();
-    return;
   }
 };
 
 const Transcription = ({transcription, submitTranscript}) => {
 
   let transcriberOn = false;
+
   return (
     <div>
       <h4>Read Me</h4>
