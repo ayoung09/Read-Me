@@ -14684,8 +14684,6 @@ var _reactRedux = __webpack_require__(24);
 
 var _flashcards = __webpack_require__(50);
 
-var _flashcards2 = _interopRequireDefault(_flashcards);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -14698,13 +14696,12 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     setCurrentFlashcard: function setCurrentFlashcard(flashcard) {
-      return dispatch((0, _flashcards2.default)(flashcard));
+      return dispatch((0, _flashcards.setCurrentFlashcard)(flashcard));
     }
   };
 };
 
 var speak = function speak(str) {
-  console.log('this is str in speak: ', str);
   var message = new SpeechSynthesisUtterance(str);
   window.speechSynthesis.speak(message);
 };
@@ -14714,17 +14711,40 @@ var Flashcard = function Flashcard(_ref) {
       currentFlashcard = _ref.currentFlashcard,
       setCurrentFlashcard = _ref.setCurrentFlashcard;
 
-  currentFlashcard = 'howdy';
+
+  var textToRender = !flashcards.length ? 'You currently have no flashcards left to practice' : 'Click below to begin your flashcard practice';
 
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(
+      'h3',
+      null,
+      textToRender
+    ),
+    flashcards.length > 0 && _react2.default.createElement(
       'button',
       { onClick: function onClick() {
-          speak(currentFlashcard);
+          return setCurrentFlashcard(flashcards.shift());
         } },
-      currentFlashcard
+      'Next Flashcard'
+    ),
+    currentFlashcard.length > 0 && _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'span',
+        null,
+        currentFlashcard
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        'button',
+        { onClick: function onClick() {
+            speak(currentFlashcard);
+          } },
+        'Listen'
+      )
     )
   );
 };
