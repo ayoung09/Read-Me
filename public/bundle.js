@@ -14495,7 +14495,7 @@ var Compare = function Compare(_ref) {
       writeComparison = _ref.writeComparison;
 
 
-  var diff = jsDiff.diffWords(currentText.body, transcript);
+  var diff = jsDiff.diffWords(currentText.body.toLowerCase(), transcript.toLowerCase());
 
   var comparisonText = '';
 

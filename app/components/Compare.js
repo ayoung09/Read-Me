@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 
 const Compare = ({ currentText, transcript, comparison, writeComparison }) => {
 
-  const diff = jsDiff.diffWords(currentText.body, transcript);
+  const diff = jsDiff.diffWords(currentText.body.toLowerCase(), transcript.toLowerCase());
 
   let comparisonText = '';
 
