@@ -12,10 +12,21 @@ const mapDispatchToProps = dispatch => ({
   setCurrentFlashcard: (flashcard) => dispatch(setCurrentFlashcard(flashcard)),
 });
 
+
+const speak = (str) => {
+  let message = new SpeechSynthesisUtterance(str);
+  window.speechSynthesis.speak(message);
+};
+
+
 const Flashcard = ({ flashcards, currentFlashcard, setCurrentFlashcard }) => {
+  currentFlashcard = 'howdy';
+
   return (
     <div>
-
+      <button onClick={() => {
+        speak(currentFlashcard);
+      }}>{currentFlashcard}</button>
     </div>
   );
 };

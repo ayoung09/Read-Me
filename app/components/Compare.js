@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as jsDiff from 'diff';
+import { Link } from 'react-router';
 
 import { writeComparison } from '../reducers/transcription';
 import { setFlashcards } from '../reducers/flashcards';
@@ -40,13 +41,18 @@ const Compare = ({ currentText, transcript, comparison, writeComparison, setFlas
 
   return (
     <div>
+      <div>
+        <OriginText currentText={currentText} />
+      </div>
+      <br />
       <button onClick={() => {writeComparison(comparisonText);
         setFlashcards(flashcards);
       }}>How did I do?</button>
-      <div>
-        <OriginText currentText={currentText}/>
-      </div>
+      <br />
+      <h4>What I said:</h4>
+      <br />
       <div dangerouslySetInnerHTML={createMarkup()}></div>
+      <Link to="/flashcard">Flashcard Practice</Link>
     </div>
   );
 };

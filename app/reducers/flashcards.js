@@ -1,3 +1,5 @@
+import shuffle from 'shuffle-array';
+
 const initialState = {
   flashcards: [],
   currentFlashcard: '',
@@ -27,7 +29,7 @@ const flashcardsReducer = (prevState = initialState, action) => {
 
 export const setFlashcards = (flashcards) => ({
   type: SET_FLASHCARDS,
-  flashcards,
+  flashcards: shuffle(flashcards),
 });
 
 export const setCurrentFlashcard = (flashcard) => ({

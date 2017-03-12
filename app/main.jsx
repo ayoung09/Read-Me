@@ -11,6 +11,7 @@ import App from './components/App';
 import Welcome from './components/Welcome';
 import ReadText from './components/ReadText';
 import Compare from './components/Compare';
+import Flashcard from './components/Flashcard';
 
 import { receiveAllTexts, getTextById } from './reducers/originText';
 
@@ -32,6 +33,7 @@ render (
         <Route path="/welcome" component={Welcome} />
         <Route path="/readText/:textId" onEnter={onReadTextEnter} component={ReadText} />
         <Route path="/compare" component={Compare} />
+        <Route path="/flashcard" component={Flashcard} />
         <IndexRedirect to="/welcome" />
       </Route>
     </Router>
