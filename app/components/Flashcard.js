@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import FlashcardTranscription from './FlashcardTranscription';
-import {setCurrentFlashcard} from '../reducers/flashcards';
+import {setCurrentFlashcard, clearDefinition} from '../reducers/flashcards';
 
 const mapStateToProps = state => ({
   flashcards: state.flashcards.flashcards,
@@ -10,7 +10,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentFlashcard: (flashcard) => dispatch(setCurrentFlashcard(flashcard)),
+  setCurrentFlashcard: (flashcard) => {
+    dispatch(clearDefinition());
+    dispatch(setCurrentFlashcard(flashcard));
+  },
 });
 
 

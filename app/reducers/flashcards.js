@@ -3,10 +3,13 @@ import shuffle from 'shuffle-array';
 const initialState = {
   flashcards: [],
   currentFlashcard: '',
+  currentDefinition: {},
 };
 
 const SET_FLASHCARDS = 'SET_FLASHCARDS';
 const SET_CURRENT_FLASHCARD = 'SET_CURRENT_FLASHCARD';
+const SET_CURRENT_DEFINITION = 'SET_CURRENT_DEFINITION';
+const CLEAR_DEFINITION = 'CLEAR_DEFINITION';
 
 
 const flashcardsReducer = (prevState = initialState, action) => {
@@ -20,6 +23,14 @@ const flashcardsReducer = (prevState = initialState, action) => {
     case SET_CURRENT_FLASHCARD:
       newState.flashcards.push(prevState.currentFlashcard);
       newState.currentFlashcard = action.flashcard;
+      break;
+
+    case SET_CURRENT_DEFINITION:
+      newState.currentDefinition = action.definitionObject;
+      break;
+
+    case CLEAR_DEFINITION:
+      newState.currentDefinition = {};
       break;
 
     default:
@@ -37,5 +48,15 @@ export const setCurrentFlashcard = (flashcard) => ({
   type: SET_CURRENT_FLASHCARD,
   flashcard,
 });
+
+export const setCurrentDefinition = (definitionObject) => ({
+  type: SET_CURRENT_DEFINITION,
+  definitionObject,
+});
+
+export const clearDefinition = () => ({
+  type: CLEAR_DEFINITION,
+});
+
 
 export default flashcardsReducer;
