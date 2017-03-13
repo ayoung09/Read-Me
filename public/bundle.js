@@ -9827,7 +9827,7 @@ var OriginText = function OriginText(props) {
 
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'row origin-text pad10 pad-outer-20' },
     _react2.default.createElement(
       'h4',
       null,
@@ -14536,21 +14536,27 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = __webpack_require__(37);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(_ref) {
   var children = _ref.children;
 
   return _react2.default.createElement(
-    "div",
-    { className: "container-fluid no-overflow" },
+    'div',
+    { className: 'container-fluid no-overflow' },
     _react2.default.createElement(
-      "div",
-      { className: "row pad5" },
+      'div',
+      { className: 'row pad5' },
       _react2.default.createElement(
-        "h1",
-        { className: "header" },
-        "Read Me"
+        _reactRouter.Link,
+        { to: '/welcome', className: 'link' },
+        _react2.default.createElement(
+          'h1',
+          { className: 'header' },
+          'Read Me'
+        )
       )
     ),
     children
@@ -15914,33 +15920,29 @@ var Transcription = function Transcription(_ref) {
 
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'row transciption-container pad20' },
     _react2.default.createElement(
-      'h4',
-      null,
-      'Read Me'
+      'h5',
+      { className: 'transcription-line' },
+      'Click on the microphone and begin reading'
     ),
-    _react2.default.createElement('div', { id: 'result' }),
     _react2.default.createElement(
       'button',
-      { onClick: function onClick() {
+      { className: 'btn btn-start', onClick: function onClick() {
           transcriberOn = !transcriberOn;
           startStopConverting(transcriberOn);
         } },
       _react2.default.createElement('i', { className: 'fa fa-microphone' })
     ),
     _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(
-        'button',
-        { onClick: function onClick() {
-            var finalTranscript = document.getElementById('result').innerHTML;
-            submitTranscript(finalTranscript);
-          } },
-        'Submit'
-      )
-    )
+      'button',
+      { className: 'btn btn-submit', onClick: function onClick() {
+          var finalTranscript = document.getElementById('result').innerHTML;
+          submitTranscript(finalTranscript);
+        } },
+      'Submit'
+    ),
+    _react2.default.createElement('div', { id: 'result' })
   );
 };
 

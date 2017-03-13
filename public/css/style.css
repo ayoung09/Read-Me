@@ -1,9 +1,22 @@
+body {
+  font-family: verdana;
+}
+
 .pad5 {
   padding: 5px;
 }
 
+.pad10 {
+  padding: 10px;
+}
+
 .pad20 {
   padding: 20px;
+}
+
+.pad-outer-20 {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .marg5 {
@@ -15,6 +28,11 @@
   justify-content: center;
   display: flex;
   align-items: center;
+  color: black;
+}
+
+.link {
+  color: black;
 }
 
 .sub-header {
@@ -33,9 +51,28 @@
   height: 50%;
 }
 
+.origin-text {
+  font-family: verdana;
+  background-color: #F0FFF0;
+  padding-bottom: 25px;
+}
+
+.transcription-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
 .btn-title {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-family: verdana;
+  font-size: 18px;
   border-radius: 5px;
   background-color: #F0FFF0;
   margin-top: 20px;
@@ -43,3 +80,15 @@
   padding: 15px 20px;
   border: none;
 }
+
+#result{
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 #bbb;
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 25px;
+  width: 50%;
+}
+

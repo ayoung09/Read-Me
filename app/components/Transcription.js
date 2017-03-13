@@ -64,21 +64,19 @@ const Transcription = ({transcription, submitTranscript}) => {
   let transcriberOn = false;
 
   return (
-    <div>
-      <h4>Read Me</h4>
+    <div className="row transciption-container pad20">
+      <h5 className="transcription-line">Click on the microphone and begin reading</h5>
+        <button className="btn btn-start" onClick={() => {
+          transcriberOn = !transcriberOn;
+          startStopConverting(transcriberOn);
+        }}>
+          <i className="fa fa-microphone"></i>
+        </button>
+        <button className="btn btn-submit" onClick={() => {
+          let finalTranscript = document.getElementById('result').innerHTML;
+          submitTranscript(finalTranscript);
+        }}>Submit</button>
         <div id="result"></div>
-          <button onClick={() => {
-            transcriberOn = !transcriberOn;
-            startStopConverting(transcriberOn);
-          }}>
-            <i className="fa fa-microphone"></i>
-          </button>
-        <div>
-          <button onClick={() => {
-            let finalTranscript = document.getElementById('result').innerHTML;
-            submitTranscript(finalTranscript);
-          }}>Submit</button>
-        </div>
     </div>
   );
 };

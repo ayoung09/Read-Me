@@ -6,7 +6,7 @@ const OriginText = (props) => {
   const currentText = props.currentText;
 
   return (
-    <div>
+    <div className="row origin-text pad10 pad-outer-20">
       <h4>{currentText.title}</h4>
       <span>{currentText.body}</span>
     </div>
