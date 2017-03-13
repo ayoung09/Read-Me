@@ -1,0 +1,45 @@
+.pad5 {
+  padding: 5px;
+}
+
+.pad20 {
+  padding: 20px;
+}
+
+.marg5 {
+  margin: 5px;
+}
+
+.header {
+  font-family: "Courier New", Courier, monospace;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.sub-header {
+  font-family: "Courier New", Courier, monospace;
+  background-color: white;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.text-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 50%;
+}
+
+.btn-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #F0FFF0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  border: none;
+}

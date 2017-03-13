@@ -10,13 +10,16 @@ const Welcome = ({allTexts}) => {
 
   return (
     <div>
-      <h1>Welcome to Read Me</h1>
-      <h3>Select a text below to begin your reading practice</h3>
-      {allTexts.length && allTexts.map(text => {
-        return (
-          <Link key={text.id} to={`readText/${text.id}`}><button>{text.title}</button></Link>
-        );
-      })}
+      <h2 className="sub-header pad5">Select a text below to begin your reading practice</h2>
+      <div className="row text-row">
+        {allTexts.length && allTexts.map(text => {
+          return (
+            <Link key={text.id} to={`readText/${text.id}`}>
+              <button className="btn btn-lg btn-title marg5">{text.title}</button>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };
