@@ -857,7 +857,7 @@ module.exports = invariant;
 
 
 
-var _prodInvariant = __webpack_require__(23);
+var _prodInvariant = __webpack_require__(24);
 
 var ReactCurrentOwner = __webpack_require__(14);
 
@@ -1580,7 +1580,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(6);
 
 var CallbackQueue = __webpack_require__(103);
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var ReactFeatureFlags = __webpack_require__(108);
 var ReactReconciler = __webpack_require__(27);
 var Transaction = __webpack_require__(43);
@@ -1871,7 +1871,7 @@ module.exports = ReactCurrentOwner;
 
 var _assign = __webpack_require__(6);
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 
 var emptyFunction = __webpack_require__(12);
 var warning = __webpack_require__(2);
@@ -2844,6 +2844,24 @@ module.exports = warning;
 
 /***/ }),
 /* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(284);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
+
+
+
+
+
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2961,7 +2979,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3308,7 +3326,7 @@ module.exports = ReactElement;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3350,24 +3368,6 @@ function reactProdInvariant(code) {
 }
 
 module.exports = reactProdInvariant;
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(284);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
-
-
-
-
-
 
 /***/ }),
 /* 25 */
@@ -4070,7 +4070,7 @@ var ReactComponent = __webpack_require__(79);
 var ReactPureComponent = __webpack_require__(314);
 var ReactClass = __webpack_require__(311);
 var ReactDOMFactories = __webpack_require__(312);
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 var ReactPropTypes = __webpack_require__(313);
 var ReactVersion = __webpack_require__(315);
 
@@ -6377,9 +6377,10 @@ var initialState = {
 };
 
 //constants
-var TOGGLE_TRANSCRIBER = 'TOGGLE_TRANSCRIBER';
 var SUBMIT_TRANSCRIPT = 'SUBMIT_TRANSCRIPT';
+var CLEAR_TRANSCRIPT = 'CLEAR_TRANSCRIPT';
 var WRITE_COMPARISON = 'WRITE_COMPARISON';
+var CLEAR_COMPARISON = 'CLEAR_COMPARISON';
 
 //reducer
 var transcriptionReducer = function transcriptionReducer() {
@@ -6390,12 +6391,19 @@ var transcriptionReducer = function transcriptionReducer() {
 
   switch (action.type) {
     case SUBMIT_TRANSCRIPT:
-
       nextState.transcript = action.transcript;
+      break;
+
+    case CLEAR_TRANSCRIPT:
+      nextState.transcript = '';
       break;
 
     case WRITE_COMPARISON:
       nextState.comparison = action.comparison;
+      break;
+
+    case CLEAR_COMPARISON:
+      nextState.comparison = '';
       break;
 
     default:
@@ -6413,10 +6421,22 @@ var submitTranscript = exports.submitTranscript = function submitTranscript(text
   };
 };
 
+var clearTranscript = exports.clearTranscript = function clearTranscript() {
+  return {
+    type: CLEAR_TRANSCRIPT
+  };
+};
+
 var writeComparison = exports.writeComparison = function writeComparison(comparisonText) {
   return {
     type: WRITE_COMPARISON,
     comparison: comparisonText
+  };
+};
+
+var clearComparison = exports.clearComparison = function clearComparison() {
+  return {
+    type: CLEAR_COMPARISON
   };
 };
 
@@ -9121,7 +9141,7 @@ var RouterContext = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createClass({
 
 
 
-var _prodInvariant = __webpack_require__(23);
+var _prodInvariant = __webpack_require__(24);
 
 var ReactNoopUpdateQueue = __webpack_require__(80);
 
@@ -10762,7 +10782,7 @@ var _prodInvariant = __webpack_require__(3);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 
 var invariant = __webpack_require__(1);
 
@@ -13934,7 +13954,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 var ReactCurrentOwner = __webpack_require__(14);
 var ReactComponentTreeHook = __webpack_require__(9);
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 var checkReactTypeSpec = __webpack_require__(316);
 
@@ -14540,7 +14560,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(31);
 
-var _reactRedux = __webpack_require__(24);
+var _reactRedux = __webpack_require__(21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14566,7 +14586,8 @@ var App = function App(_ref) {
         _react2.default.createElement(
           'button',
           { className: 'btn btn-flashcards' },
-          'Flashcards'
+          'Flashcards: ',
+          flashcards.length
         )
       ),
       _react2.default.createElement(
@@ -14600,7 +14621,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(24);
+var _reactRedux = __webpack_require__(21);
 
 var _diff = __webpack_require__(178);
 
@@ -14624,7 +14645,8 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     currentText: state.originText.currentText,
     transcript: state.transcription.transcript,
-    comparison: state.transcription.comparison
+    comparison: state.transcription.comparison,
+    flashcards: state.flashcards.flashcards
   };
 };
 
@@ -14643,6 +14665,7 @@ var Compare = function Compare(_ref) {
   var currentText = _ref.currentText,
       transcript = _ref.transcript,
       comparison = _ref.comparison,
+      flashcards = _ref.flashcards,
       writeComparison = _ref.writeComparison,
       setFlashcards = _ref.setFlashcards;
 
@@ -14650,10 +14673,10 @@ var Compare = function Compare(_ref) {
   var diff = jsDiff.diffWords(currentText.body.toLowerCase(), transcript.toLowerCase());
 
   var comparisonText = '';
-  var flashcards = [];
+  var tempFlashcards = [];
 
   diff.forEach(function (part) {
-    if (part.removed && part.value.length > 1) flashcards.push(part.value);
+    if (part.removed && part.value.length > 1) tempFlashcards.push(part.value);
 
     var color = part.added ? 'lightGrey' : part.removed ? 'pink' : null;
     comparisonText += '<span style="background: ' + color + '">' + part.value + '</span>';
@@ -14678,12 +14701,25 @@ var Compare = function Compare(_ref) {
       'div',
       { className: 'pad20' },
       _react2.default.createElement(
-        'button',
-        { className: 'btn', onClick: function onClick() {
-            writeComparison(comparisonText);
-            setFlashcards(flashcards);
-          } },
-        'How did I do?'
+        'div',
+        null,
+        _react2.default.createElement(
+          'button',
+          { className: 'btn', onClick: function onClick() {
+              writeComparison(comparisonText);
+              setFlashcards(tempFlashcards);
+            } },
+          'How did I do?'
+        ),
+        flashcards.length > 0 && _react2.default.createElement(
+          _reactRouter.Link,
+          { to: '/flashcard' },
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-flashcards-compare' },
+            'Flashcards'
+          )
+        )
       ),
       _react2.default.createElement('br', null),
       _react2.default.createElement(
@@ -14714,7 +14750,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(24);
+var _reactRedux = __webpack_require__(21);
 
 var _FlashcardTranscription = __webpack_require__(166);
 
@@ -14739,11 +14775,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-var speak = function speak(str) {
-  var message = new SpeechSynthesisUtterance(str);
-  window.speechSynthesis.speak(message);
-};
-
 var Flashcard = function Flashcard(_ref) {
   var flashcards = _ref.flashcards,
       currentFlashcard = _ref.currentFlashcard,
@@ -14754,7 +14785,7 @@ var Flashcard = function Flashcard(_ref) {
 
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'container-fluid flashcard-container' },
     _react2.default.createElement(
       'h3',
       null,
@@ -14762,28 +14793,25 @@ var Flashcard = function Flashcard(_ref) {
     ),
     flashcards.length > 0 && _react2.default.createElement(
       'button',
-      { onClick: function onClick() {
+      { className: 'btn', onClick: function onClick() {
           return setCurrentFlashcard(flashcards.shift());
         } },
       'Next Flashcard'
     ),
     currentFlashcard.length > 0 && _react2.default.createElement(
       'div',
-      null,
+      { className: 'row' },
       _react2.default.createElement(
-        'span',
-        null,
-        currentFlashcard
-      ),
-      _react2.default.createElement('br', null),
-      _react2.default.createElement(
-        'button',
-        { onClick: function onClick() {
-            speak(currentFlashcard);
-          } },
-        'Listen'
-      ),
-      _react2.default.createElement(_FlashcardTranscription2.default, null)
+        'div',
+        { className: 'flashcard' },
+        _react2.default.createElement(
+          'div',
+          { className: 'margTB5' },
+          currentFlashcard
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(_FlashcardTranscription2.default, null)
+      )
     )
   );
 };
@@ -14805,7 +14833,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(24);
+var _reactRedux = __webpack_require__(21);
 
 var _OriginText = __webpack_require__(91);
 
@@ -14854,7 +14882,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(31);
 
-var _reactRedux = __webpack_require__(24);
+var _reactRedux = __webpack_require__(21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15789,7 +15817,20 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(21);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentFlashcard: state.flashcards.currentFlashcard
+  };
+};
+
+var speak = function speak(str) {
+  var message = new SpeechSynthesisUtterance(str);
+  window.speechSynthesis.speak(message);
+};
 
 var startStopConverting = function startStopConverting(onOrOff) {
 
@@ -15831,7 +15872,9 @@ var startStopConverting = function startStopConverting(onOrOff) {
   }
 };
 
-var FlashcardTranscription = function FlashcardTranscription(props) {
+var FlashcardTranscription = function FlashcardTranscription(_ref) {
+  var currentFlashcard = _ref.currentFlashcard;
+
 
   var transcriberOn = false;
 
@@ -15840,17 +15883,24 @@ var FlashcardTranscription = function FlashcardTranscription(props) {
     null,
     _react2.default.createElement(
       'button',
-      { onClick: function onClick() {
+      { className: 'btn btn-listen', onClick: function onClick() {
+          speak(currentFlashcard);
+        } },
+      'Listen'
+    ),
+    _react2.default.createElement(
+      'button',
+      { className: 'btn btn-flash-transcription', onClick: function onClick() {
           transcriberOn = !transcriberOn;
           startStopConverting(transcriberOn);
         } },
       _react2.default.createElement('i', { className: 'fa fa-microphone' })
     ),
-    _react2.default.createElement('div', { id: 'result' })
+    _react2.default.createElement('div', { id: 'result-flashcard' })
   );
 };
 
-exports.default = FlashcardTranscription;
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(FlashcardTranscription);
 
 /***/ }),
 /* 167 */
@@ -15867,7 +15917,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(24);
+var _reactRedux = __webpack_require__(21);
 
 var _reactRouter = __webpack_require__(31);
 
@@ -20440,7 +20490,7 @@ module.exports = EnterLeaveEventPlugin;
 
 var _assign = __webpack_require__(6);
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 
 var getTextContentAccessor = __webpack_require__(118);
 
@@ -25121,7 +25171,7 @@ var _assign = __webpack_require__(6);
 
 var EventListener = __webpack_require__(94);
 var ExecutionEnvironment = __webpack_require__(7);
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(13);
 
@@ -26043,7 +26093,7 @@ module.exports = ReactPropTypeLocationNames;
 var _assign = __webpack_require__(6);
 
 var CallbackQueue = __webpack_require__(103);
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var ReactBrowserEventEmitter = __webpack_require__(41);
 var ReactInputSelection = __webpack_require__(110);
 var ReactInstrumentation = __webpack_require__(11);
@@ -26320,7 +26370,7 @@ module.exports = ReactRef;
 
 var _assign = __webpack_require__(6);
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var Transaction = __webpack_require__(43);
 var ReactInstrumentation = __webpack_require__(11);
 var ReactServerUpdateQueue = __webpack_require__(256);
@@ -30549,7 +30599,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(23);
+var _prodInvariant = __webpack_require__(24);
 
 var invariant = __webpack_require__(1);
 
@@ -30667,7 +30717,7 @@ module.exports = PooledClass;
 
 
 var PooledClass = __webpack_require__(309);
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 var emptyFunction = __webpack_require__(12);
 var traverseAllChildren = __webpack_require__(318);
@@ -30862,11 +30912,11 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(23),
+var _prodInvariant = __webpack_require__(24),
     _assign = __webpack_require__(46);
 
 var ReactComponent = __webpack_require__(79);
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 var ReactPropTypeLocationNames = __webpack_require__(81);
 var ReactNoopUpdateQueue = __webpack_require__(80);
 
@@ -31585,7 +31635,7 @@ module.exports = ReactClass;
 
 
 
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -31761,7 +31811,7 @@ module.exports = ReactDOMFactories;
 
 
 
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 var ReactPropTypeLocationNames = __webpack_require__(81);
 var ReactPropTypesSecret = __webpack_require__(137);
 
@@ -32267,7 +32317,7 @@ module.exports = '15.4.2';
 
 
 
-var _prodInvariant = __webpack_require__(23);
+var _prodInvariant = __webpack_require__(24);
 
 var ReactPropTypeLocationNames = __webpack_require__(81);
 var ReactPropTypesSecret = __webpack_require__(137);
@@ -32359,9 +32409,9 @@ module.exports = checkReactTypeSpec;
  */
 
 
-var _prodInvariant = __webpack_require__(23);
+var _prodInvariant = __webpack_require__(24);
 
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 var invariant = __webpack_require__(1);
 
@@ -32404,7 +32454,7 @@ module.exports = onlyChild;
 
 
 
-var _prodInvariant = __webpack_require__(23);
+var _prodInvariant = __webpack_require__(24);
 
 var ReactCurrentOwner = __webpack_require__(14);
 var REACT_ELEMENT_TYPE = __webpack_require__(135);
@@ -33520,7 +33570,7 @@ var _reactRouter = __webpack_require__(31);
 
 var _reactDom = __webpack_require__(148);
 
-var _reactRedux = __webpack_require__(24);
+var _reactRedux = __webpack_require__(21);
 
 var _axios = __webpack_require__(48);
 
@@ -33552,6 +33602,8 @@ var _Flashcard2 = _interopRequireDefault(_Flashcard);
 
 var _originText = __webpack_require__(85);
 
+var _transcription = __webpack_require__(51);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var onAppEnter = function onAppEnter() {
@@ -33563,6 +33615,11 @@ var onAppEnter = function onAppEnter() {
 var onReadTextEnter = function onReadTextEnter(nextRouterState) {
   var textId = nextRouterState.params.textId;
   _store2.default.dispatch((0, _originText.getTextById)(textId));
+  _store2.default.dispatch((0, _transcription.clearTranscript)());
+};
+
+var onCompareEnter = function onCompareEnter() {
+  _store2.default.dispatch((0, _transcription.clearComparison)());
 };
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -33576,7 +33633,7 @@ var onReadTextEnter = function onReadTextEnter(nextRouterState) {
       { path: '/', component: _App2.default, onEnter: onAppEnter },
       _react2.default.createElement(_reactRouter.Route, { path: '/welcome', component: _Welcome2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: '/readText/:textId', onEnter: onReadTextEnter, component: _ReadText2.default }),
-      _react2.default.createElement(_reactRouter.Route, { path: '/compare', component: _Compare2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: '/compare', component: _Compare2.default, onEnter: onCompareEnter }),
       _react2.default.createElement(_reactRouter.Route, { path: '/flashcard', component: _Flashcard2.default }),
       _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/welcome' })
     )

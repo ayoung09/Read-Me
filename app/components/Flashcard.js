@@ -14,30 +14,25 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const speak = (str) => {
-  let message = new SpeechSynthesisUtterance(str);
-  window.speechSynthesis.speak(message);
-};
-
 
 const Flashcard = ({ flashcards, currentFlashcard, setCurrentFlashcard }) => {
 
   let textToRender = !flashcards.length ? 'You currently have no flashcards left to practice' : 'Click below to begin your flashcard practice';
 
   return (
-    <div>
+    <div className="container-fluid flashcard-container">
       <h3>{textToRender}</h3>
       { flashcards.length > 0 &&
-        <button onClick={() => setCurrentFlashcard(flashcards.shift())}>Next Flashcard</button>
+        <button className="btn" onClick={() => setCurrentFlashcard(flashcards.shift())}>Next Flashcard</button>
       }
       { currentFlashcard.length > 0 &&
-        <div>
-          <span>{currentFlashcard}</span>
-          <br />
-          <button onClick={() => {
-            speak(currentFlashcard);
-          }}>Listen</button>
-        <FlashcardTranscription />
+        <div className="row">
+          <div className="flashcard">
+            <div className="margTB5">{currentFlashcard}</div>
+            <br />
+
+            <FlashcardTranscription />
+          </div>
         </div>
       }
     </div>

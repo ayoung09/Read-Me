@@ -23,11 +23,15 @@ body {
   margin: 5px;
 }
 
+.margTB5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .header {
   font-family: "Courier New", Courier, monospace;
   justify-content: center;
   display: flex;
-  align-items: center;
   color: black;
 }
 
@@ -53,7 +57,7 @@ body {
 
 .origin-text {
   font-family: verdana;
-  background-color: #F0FFF0;
+  background-color: white;
   padding-bottom: 25px;
 }
 
@@ -68,13 +72,13 @@ body {
   border-radius: 5px;
   margin-right: 10px;
   margin-bottom: 10px;
+  background-color: #F0FFF0;
 }
 
 .btn-title {
   font-family: verdana;
   font-size: 18px;
   border-radius: 5px;
-  background-color: #F0FFF0;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 15px 20px;
@@ -84,6 +88,25 @@ body {
 .btn-flashcards {
   background-color: #F0FFF0;
   float: right;
+}
+
+.btn-flash-transcription {
+  float: center;
+}
+
+.flashcard-container {
+  justify-content: center;
+}
+
+.flashcard {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 #bbb;
+  background-color: white;
+  font-size: 18px;
+  width: 60%;
+  justify-content: center;
 }
 
 #result{
@@ -97,3 +120,13 @@ body {
   width: 50%;
 }
 
+#result-flashcard{
+  height: 100px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 #bbb;
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 25px;
+  width: 75%;
+}

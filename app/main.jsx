@@ -14,6 +14,7 @@ import Compare from './components/Compare';
 import Flashcard from './components/Flashcard';
 
 import { receiveAllTexts, getTextById } from './reducers/originText';
+import { clearComparison, clearTranscript } from './reducers/transcription';
 
 
 const onAppEnter = () => {
@@ -24,7 +25,12 @@ const onAppEnter = () => {
 const onReadTextEnter = (nextRouterState) => {
   const textId = nextRouterState.params.textId;
   store.dispatch(getTextById(textId));
+  store.dispatch(clearTranscript());
 };
+
+const onCompareEnter = () => {
+  store.dispatch(clearComparison());
+}
 
 render (
   <Provider store={store}>
@@ -32,7 +38,7 @@ render (
       <Route path="/" component={App} onEnter={onAppEnter}>
         <Route path="/welcome" component={Welcome} />
         <Route path="/readText/:textId" onEnter={onReadTextEnter} component={ReadText} />
-        <Route path="/compare" component={Compare} />
+        <Route path="/compare" component={Compare} onEnter={onCompareEnter} />
         <Route path="/flashcard" component={Flashcard} />
         <IndexRedirect to="/welcome" />
       </Route>

@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
   currentText: state.originText.currentText,
   transcript: state.transcription.transcript,
   comparison: state.transcription.comparison,
+  flashcards: state.flashcards.flashcards,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,15 +21,15 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const Compare = ({ currentText, transcript, comparison, writeComparison, setFlashcards }) => {
+const Compare = ({ currentText, transcript, comparison, flashcards, writeComparison, setFlashcards }) => {
 
   const diff = jsDiff.diffWords(currentText.body.toLowerCase(), transcript.toLowerCase());
 
   let comparisonText = '';
-  let flashcards = [];
+  let tempFlashcards = [];
 
   diff.forEach(function(part){
-    if (part.removed && part.value.length > 1) flashcards.push(part.value);
+    if (part.removed && part.value.length > 1) tempFlashcards.push(part.value);
 
     let color = part.added ? 'lightGrey' :
       part.removed ? 'pink' : null;
@@ -46,9 +47,13 @@ const Compare = ({ currentText, transcript, comparison, writeComparison, setFlas
       </div>
       <br />
       <div className="pad20">
-        <button className="btn" onClick={() => {writeComparison(comparisonText);
-          setFlashcards(flashcards);
-        }}>How did I do?</button>
+        <div>
+          <button className="btn" onClick={() => {writeComparison(comparisonText);
+            setFlashcards(tempFlashcards);
+          }}>How did I do?</button>
+          {flashcards.length > 0 &&
+            <Link to="/flashcard"><button className="btn btn-flashcards-compare">Flashcards</button></Link>}
+        </div>
         <br />
         <h4 className="marg5">What I said:</h4>
         <br />

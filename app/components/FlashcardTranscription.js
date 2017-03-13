@@ -1,4 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+
+const mapStateToProps = state => ({
+  currentFlashcard: state.flashcards.currentFlashcard,
+});
+
+
+const speak = (str) => {
+  let message = new SpeechSynthesisUtterance(str);
+  window.speechSynthesis.speak(message);
+};
+
 
 const startStopConverting = (onOrOff) => {
 
@@ -42,22 +54,25 @@ const startStopConverting = (onOrOff) => {
   }
 };
 
-const FlashcardTranscription = (props) => {
+const FlashcardTranscription = ({currentFlashcard}) => {
 
   let transcriberOn = false;
 
   return (
     <div>
-        <button onClick={() => {
+        <button className="btn btn-listen" onClick={() => {
+              speak(currentFlashcard);
+            }}>Listen</button>
+        <button className="btn btn-flash-transcription" onClick={() => {
           transcriberOn = !transcriberOn;
           startStopConverting(transcriberOn);
         }}>
           <i className="fa fa-microphone"></i>
         </button>
-      <div id="result"></div>
+      <div id="result-flashcard"></div>
     </div>
   );
 };
 
 
-export default FlashcardTranscription;
+export default connect(mapStateToProps)(FlashcardTranscription);

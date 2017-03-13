@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
-import { submitTranscript, resetTranscript } from '../reducers/transcription';
+import { submitTranscript } from '../reducers/transcription';
 
 const mapStateToProps = (state) => ({
   transcript: state.transcription.transcript,

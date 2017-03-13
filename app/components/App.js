@@ -11,7 +11,7 @@ const App = ({ flashcards, children }) => {
     <div className="container-fluid no-overflow">
       <div className="row pad5">
       {flashcards.length > 0 &&
-        <Link to="/flashcard"><button className="btn btn-flashcards">Flashcards</button></Link>}
+        <Link to="/flashcard"><button className="btn btn-flashcards">Flashcards: {flashcards.length}</button></Link>}
         <Link to="/welcome" className="link">
           <h1 className="header">Read Me</h1>
         </Link>
