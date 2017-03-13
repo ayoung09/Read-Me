@@ -27,6 +27,8 @@ const originTextReducer = (prevState = initialState, action) => {
   return nextState;
 };
 
+
+//action-creators
 export const receiveCurrentText = (text) => ({
   type: RECEIVE_CURRENT_TEXT,
   text,
@@ -36,7 +38,6 @@ export const receiveAllTexts = (texts) => ({
   type: RECEIVE_ALL_TEXTS,
   texts,
 });
-
 
 export const getTextById = textId => {
   return dispatch => {

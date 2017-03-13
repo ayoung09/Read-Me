@@ -14,10 +14,11 @@ const flashcardsReducer = (prevState = initialState, action) => {
 
   switch (action.type) {
     case SET_FLASHCARDS:
-      newState.flashcards = action.flashcards;
+      newState.flashcards = prevState.flashcards.concat(action.flashcards);
       break;
 
     case SET_CURRENT_FLASHCARD:
+      newState.flashcards.push(prevState.currentFlashcard);
       newState.currentFlashcard = action.flashcard;
       break;
 

@@ -30,8 +30,8 @@ const Compare = ({ currentText, transcript, comparison, writeComparison, setFlas
   diff.forEach(function(part){
     if (part.removed && part.value.length > 1) flashcards.push(part.value);
 
-    let color = part.added ? 'grey' :
-      part.removed ? 'pink' : 'white';
+    let color = part.added ? 'lightGrey' :
+      part.removed ? 'pink' : null;
     comparisonText += `<span style="background: ${color}">${part.value}</span>`;
     });
 
@@ -45,14 +45,15 @@ const Compare = ({ currentText, transcript, comparison, writeComparison, setFlas
         <OriginText currentText={currentText} />
       </div>
       <br />
-      <button onClick={() => {writeComparison(comparisonText);
-        setFlashcards(flashcards);
-      }}>How did I do?</button>
-      <br />
-      <h4>What I said:</h4>
-      <br />
-      <div dangerouslySetInnerHTML={createMarkup()}></div>
-      <Link to="/flashcard">Flashcard Practice</Link>
+      <div className="pad20">
+        <button className="btn" onClick={() => {writeComparison(comparisonText);
+          setFlashcards(flashcards);
+        }}>How did I do?</button>
+        <br />
+        <h4 className="marg5">What I said:</h4>
+        <br />
+        <div id="result" className="comparison-text"dangerouslySetInnerHTML={createMarkup()}></div>
+      </div>
     </div>
   );
 };
