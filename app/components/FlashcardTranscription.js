@@ -1,26 +1,9 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
-
-import { submitTranscript, resetTranscript } from '../reducers/transcription';
-
-const mapStateToProps = (state) => ({
-  transcript: state.transcription.transcript,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  submitTranscript: (text) => {
-    dispatch(submitTranscript(text));
-    browserHistory.push('/compare');
-  },
-});
-
 
 const startStopConverting = (onOrOff) => {
 
   var r = document.getElementById('result');
   console.log('this is on or off: ', onOrOff);
-
 
     if (!'webkitSpeechRecognition' in window){
       upgrade();
@@ -59,27 +42,22 @@ const startStopConverting = (onOrOff) => {
   }
 };
 
-const Transcription = ({transcription, submitTranscript}) => {
+const FlashcardTranscription = (props) => {
 
   let transcriberOn = false;
 
   return (
-    <div className="row transciption-container pad20">
-      <h5 className="transcription-line">Click on the microphone and begin reading</h5>
-        <button className="btn btn-start" onClick={() => {
+    <div>
+        <button onClick={() => {
           transcriberOn = !transcriberOn;
           startStopConverting(transcriberOn);
         }}>
           <i className="fa fa-microphone"></i>
         </button>
-        <button className="btn btn-submit" onClick={() => {
-          let finalTranscript = document.getElementById('result').innerHTML;
-          submitTranscript(finalTranscript);
-        }}>Submit</button>
-        <div id="result"></div>
+      <div id="result"></div>
     </div>
   );
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Transcription);
+export default FlashcardTranscription;
