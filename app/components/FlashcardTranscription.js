@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import store from '../store';
 
+import config from '../../key';
 import { setCurrentDefinition } from '../reducers/flashcards';
 
 
@@ -60,10 +61,6 @@ const startStopConverting = (onOrOff) => {
   }
 };
 
-
-const config = {
-  headers: {"X-Mashape-Authorization": "NguKc9ItBYmshgM0gmIWPLKlR5Yop1S6q6KjsnUSPhPk4WdF93"}
-};
 
 
 const defineWord = (word) => {
