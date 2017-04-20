@@ -5,7 +5,6 @@ const api = module.exports = require('express').Router();
 
 api
   .use('/', (req, res, next) => {
-    console.log('GOT TO API ROUTER');
     next();
   })
   .use('/texts', require('./texts'));

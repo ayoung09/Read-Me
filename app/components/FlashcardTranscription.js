@@ -21,7 +21,7 @@ const speak = (str) => {
 
 const startStopConverting = (onOrOff) => {
 
-  var r = document.getElementById('result');
+  var r = document.getElementById('result-flashcard');
   console.log('this is on or off: ', onOrOff);
 
     if (!'webkitSpeechRecognition' in window){

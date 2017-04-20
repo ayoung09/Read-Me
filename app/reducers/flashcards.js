@@ -11,7 +11,6 @@ const SET_CURRENT_FLASHCARD = 'SET_CURRENT_FLASHCARD';
 const SET_CURRENT_DEFINITION = 'SET_CURRENT_DEFINITION';
 const CLEAR_DEFINITION = 'CLEAR_DEFINITION';
 
-
 const flashcardsReducer = (prevState = initialState, action) => {
   const newState = Object.assign({}, prevState);
 
@@ -57,6 +56,5 @@ export const setCurrentDefinition = (definitionObject) => ({
 export const clearDefinition = () => ({
   type: CLEAR_DEFINITION,
 });
-
 
 export default flashcardsReducer;

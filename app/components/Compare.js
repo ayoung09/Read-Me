@@ -31,7 +31,7 @@ const Compare = ({ currentText, transcript, comparison, flashcards, writeCompari
   diff.forEach(function(part){
     if (part.removed && part.value.length > 1) tempFlashcards.push(part.value);
 
-    let color = part.added ? 'lightGrey' :
+    let color = part.added ? 'darkGrey' :
       part.removed ? 'pink' : null;
     comparisonText += `<span style="background: ${color}">${part.value}</span>`;
     });
